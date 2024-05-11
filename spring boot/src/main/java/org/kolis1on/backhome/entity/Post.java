@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.kolis1on.backhome.dto.PostRequestDTO;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 
 @Entity
 @Data
@@ -26,11 +27,15 @@ public class Post {
     private Long creationDate;
     private Long lostDate;
 
+    private String locationName;
+    private String locationCoords;
+
+
     @ManyToOne
     private User user;
 
-
-
+    @Lob
+    private String image;
 
     @PrePersist
     protected void onCreate() {

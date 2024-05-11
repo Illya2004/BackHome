@@ -9,10 +9,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserIdIsNotCorrectException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+
+
+    @ExceptionHandler(ImageIsTooBigException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public String handleUserIdIsNotCorrectException(UserIdIsNotCorrectException ex) {
+    public String imageIsTooBigException(ImageIsTooBigException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(PostIdNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String postIdNotFoundException(PostIdNotFoundException ex) {
         return ex.getMessage();
     }
 }

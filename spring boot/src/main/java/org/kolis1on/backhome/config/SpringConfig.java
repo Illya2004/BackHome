@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Configuration
-@ComponentScan(basePackages = {"com.kolis1on.frontsupport"})
+@ComponentScan(basePackages = {"org.kolis1on.backhome"})
 @RequiredArgsConstructor
 public class SpringConfig {
     private final CustomUserDetailsService userDetailsService;

@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class UserResponseDTO {
     private String username;
-    private String phone_number;
+    private String phoneNumber;
     private String email;
     private Role role;
 
@@ -17,7 +17,7 @@ public class UserResponseDTO {
 
         return UserResponseDTO.builder()
                 .username(user.getRealName())
-                .phone_number(user.getPhoneNumber())
+                .phoneNumber(user.getPhoneNumber())
                 .email(user.getEmail())
                 .role(user.getRole())
                 .build();

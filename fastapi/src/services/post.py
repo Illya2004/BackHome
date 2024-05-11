@@ -28,7 +28,8 @@ async def get_user_posts(token: str = Depends(oauth2_scheme), db: Session = Depe
             db.query(Post, func.count(PostLikes.post_id))
             .outerjoin(PostLikes, Post.id == PostLikes.post_id)
             .filter(Post.user_id == user.id if user.role == "ROLE_CREATOR" else PostLikes.user_id == user.id)
-            .order_by(desc(Post.creation_time))
+            .group_by(Post.id, Post.title, Post.description, Post.creation_date, Post.lost_date, Post.location_name, Post.location_coords, Post.user_id)
+            .order_by(desc(Post.creation_date))
             .all()
         )
 
@@ -36,9 +37,13 @@ async def get_user_posts(token: str = Depends(oauth2_scheme), db: Session = Depe
         for post, likeCount in posts:
             if post.id not in posts_dict:
                 posts_dict[post.id] = {
-                    "postId": post.id,
+                    "id": post.id,
+                    "title": post.title,
                     "description": post.description,
-                    "location": post.location,
+                    "location_name": post.location_name,
+                    "location_coords": post.location_coords,
+                    "creationDate": str(post.creation_date),
+                    "lostDate": str(post.lost_date),
                     "userId": post.user_id,
                     "likeCount": likeCount
                 }
@@ -52,3 +57,6 @@ async def get_user_posts(token: str = Depends(oauth2_scheme), db: Session = Depe
         raise HTTPException(status_code=401, detail="Token has expired")
     except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Invalid token")
+
+
+

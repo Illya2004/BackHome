@@ -1,4 +1,4 @@
-import { instanceWithAuthV1 } from '@/api/interceptors'
+import { instance } from '@/api/interceptors'
 import type {
 	IAuthResponse,
 	ILogin,
@@ -8,10 +8,7 @@ import { removeFromStorage, saveToStorage } from './token.service'
 
 const AuthService = {
 	async auth(type: 'login' | 'register', data: ILogin | IRegister) {
-		const response = await instanceWithAuthV1.post<IAuthResponse>(
-			`/auth/${type}`,
-			data
-		)
+		const response = await instance.post<IAuthResponse>(`/auth/${type}`, data)
 		if (response.data.token) saveToStorage(response.data)
 		return response.data
 	},

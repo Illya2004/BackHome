@@ -3,15 +3,17 @@ import storage from 'redux-persist/lib/storage'
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { filtersSlice } from './filter/filter.slice.js'
 import { userSlice } from './user/user.slice'
 
 const persistConfig = {
-	key: '',
+	key: 'front-support',
 	storage,
 }
 
 const reducer = combineReducers({
 	user: userSlice.reducer,
+	filters: filtersSlice.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

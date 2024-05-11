@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                   .authorizeHttpRequests(auth -> auth
                           .requestMatchers("/auth/**").permitAll()
                           .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll()
-                          .requestMatchers("/post/**").permitAll()
+                          .requestMatchers("/posts/**").permitAll()
                           .anyRequest().authenticated())
                   .exceptionHandling(exception -> exception
                           .accessDeniedHandler(new CustomAccessDeniedHandler()))

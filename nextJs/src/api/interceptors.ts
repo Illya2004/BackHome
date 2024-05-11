@@ -3,12 +3,12 @@ import axios, { type CreateAxiosDefaults } from 'axios'
 import { errorCatch, getContentType } from './api.helper'
 
 const options: CreateAxiosDefaults = {
-	baseURL: process.env.SERVER_V1_URL,
+	baseURL: 'http://10.4.57.28:8080/v1',
 	headers: getContentType(),
 	withCredentials: true,
 }
 const optionsV2: CreateAxiosDefaults = {
-	baseURL: process.env.SERVER_V2_URL,
+	baseURL: 'https://api.back-home.pp.ua/v2',
 	headers: getContentType(),
 	withCredentials: true,
 }

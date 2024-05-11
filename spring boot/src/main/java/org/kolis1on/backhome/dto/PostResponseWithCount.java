@@ -6,10 +6,10 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
-@Builder
-@AllArgsConstructor
-public class PostResponseWithCount {
-    private Long count;
-    private List<PostResponseDTO> posts;
+
+public record PostResponseWithCount (
+
+     Long count,
+     List<PostResponseDTO> posts
+){
 }

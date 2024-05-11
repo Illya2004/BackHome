@@ -8,18 +8,17 @@ public class DateFormat {
 
     // # -  DD/MM/YYY
     public static Long dateToTimestamp(String dateString) {
-        long timestamp = 0;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try {
             Date date = dateFormat.parse(dateString);
 
-            timestamp = date.getTime();
+            return date.getTime();
 
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return timestamp;
+        return 0L;
     }
 }

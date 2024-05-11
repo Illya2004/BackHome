@@ -10,4 +10,6 @@ public class PostRequestDTO {
     private String title;
     private String description;
     private String lostDate;
+    private String locationName;
+    private String locationCoords;
 }

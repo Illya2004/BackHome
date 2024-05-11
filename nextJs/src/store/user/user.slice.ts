@@ -1,6 +1,6 @@
 import { EnumToken } from '@/enums/token.enum'
 import { IInitialState as IUserInitialState } from '@/interfaces/user.interfaces'
-import { getLocalStorage } from '@/utils/local-storage'
+import { getLocalStorage } from '@/lib/local-storage'
 import { createSlice } from '@reduxjs/toolkit/react'
 import { login, logout, register } from './user.actions'
 

@@ -34,7 +34,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
         likes = db.query(PostLikes).filter(PostLikes.user_id == user.id).all()
         post_ids = [like.post_id for like in likes]
 
-        user_details = UserModel(id=user.id, name=user.name, email=user.email, phoneNumber=user.phoneNumber,
+        user_details = UserModel(id=user.id, name=user.name, email=user.email, phoneNumber=user.phone_number,
                                  role=user.role, liked=post_ids)
         print(user.id)
         return user_details
@@ -55,13 +55,13 @@ def send_password_email(email_user, password_user):
     email_address = mail_config.HOST_EMAIL
     password = mail_config.EMAIL_PASS
     try:
-        server = smtplib.SMTP(smtp_server, port)
+        server = smtplib.SMTP_SSL(smtp_server, port)
         server.login(email_address, password)
 
         msg = MIMEMultipart()
         msg['From'] = email_address
         msg['To'] = email_user
-        msg['Subject'] = f'[Back Home] Скидання паролю для {email_user}'
+        msg['Subject'] = f'[{settings.DOMAIN_NAME}] Скидання паролю для {email_user}'
         msg_id = make_msgid(domain=settings.DOMAIN_NAME)
         msg['Message-ID'] = msg_id
 
@@ -100,7 +100,7 @@ def send_password_email(email_user, password_user):
                             <table style="Margin:0 0 16px 0;border-collapse:collapse;border-spacing:0;margin:0 0 16px;padding:0;text-align:left;vertical-align:top;width:auto!important"><tbody><tr style="padding:0;text-align:left;vertical-align:top"><td style="Margin:0;border-collapse:collapse!important;color:#344a5e;font-family:Tahoma,sans-serif;font-size:14px;font-weight:400;line-height:1.7;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"><table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"><tbody><tr style="padding:0;text-align:left;vertical-align:top"><td style="Margin:0;background:0 0;border:1px solid transparent;border-collapse:collapse!important;color:#fff;font-family:Tahoma,sans-serif;font-size:14px;font-weight:400;line-height:1.7;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
 
 
-                              <a href="https//:{settings.DOMAIN_NAME}/auth" style="Margin:0;background-color:#5b40ff!important;border-radius:.5rem;color:#fff!important;display:inline-block;font-family:Tahoma,sans-serif;font-size:16px;font-weight:400;line-height:1.5;margin:0;padding:7px 37px!important;text-align:left;text-decoration:none;text-transform:normal;white-space:nowrap!important" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://{settings.DOMAIN_NAME}/auth&amp;source=gmail&amp;ust=1714396499627000&amp;usg=AOvVaw37TWKSV1IxJ38NLvd8eTQG" jslog="32272; 1:WyIjdGhyZWFkLWY6MTc5NzU3ODU5NjEwMjcwMjc4MiJd; 4:WyIjbXNnLWY6MTc5NzU4NDM4MTIyMzE5NDEwOCJd">Перейти до авторизації</a>
+                              <a href="https://{settings.DOMAIN_NAME}/auth" style="Margin:0;background-color:#0050EA!important;border-radius:.5rem;color:#fff!important;display:inline-block;font-family:Tahoma,sans-serif;font-size:16px;font-weight:400;line-height:1.5;margin:0;padding:7px 37px!important;text-align:left;text-decoration:none;text-transform:normal;white-space:nowrap!important" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://{settings.DOMAIN_NAME}/auth&amp;source=gmail&amp;ust=1714396499627000&amp;usg=AOvVaw37TWKSV1IxJ38NLvd8eTQG" jslog="32272; 1:WyIjdGhyZWFkLWY6MTc5NzU3ODU5NjEwMjcwMjc4MiJd; 4:WyIjbXNnLWY6MTc5NzU4NDM4MTIyMzE5NDEwOCJd">Перейти до авторизації</a>
 
                             </td></tr></tbody></table></td></tr></tbody></table></th></tr></tbody></table></th><th style="Margin:0 auto;color:#344a5e;font-family:Tahoma,sans-serif;font-size:14px;font-weight:400;line-height:1.7;margin:0 auto;padding:0;padding-bottom:16px;padding-left:22px;padding-right:10px;text-align:left;width:370px"><table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"><tbody><tr style="padding:0;text-align:left;vertical-align:top"><th style="Margin:0;color:#344a5e;font-family:Tahoma,sans-serif;font-size:14px;font-weight:400;line-height:1.7;margin:0;padding:0;text-align:left">
                             </th></tr></tbody></table></th></tr></tbody></table>

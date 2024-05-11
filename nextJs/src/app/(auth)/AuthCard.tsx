@@ -1,4 +1,3 @@
-import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
 import { type FC } from 'react'
@@ -10,26 +9,20 @@ interface IAuthWrapperProps {
 const AuthCard: FC<IAuthWrapperProps> = ({ type }) => {
 	const isLogin = type === 'login'
 	return (
-		<Card className='m-auto w-max absolute top-1/2 right-72 transform -translate-y-1/2 p-10'>
-			{/* <CardHeader>
-				<CardTitle>{isLogin ? 'Sign in' : 'Оберіть свою'}</CardTitle>
-			</CardHeader> */}
+		<Card className='h-max text-center md:w-[450px] md:top-1/2 absolute md:right-72 transform md:-translate-y-1/2 p-10 bottom-5 max-md:left-1/2 max-md:-translate-x-1/2 max-md:w-96 max-sm:w-80 max-sm:p-5'>
 			<CardContent>{isLogin ? <LoginForm /> : <RegisterForm />}</CardContent>
 			<CardFooter className='flex justify-center'>
 				{isLogin ? (
 					<p>
-						You are not registered?{' '}
-						<Link
-							className={buttonVariants({ variant: 'link' })}
-							href={'/register'}
-						>
-							Sign Up
+						Вперше на нашому сайті? Зареєструйтесь{' '}
+						<Link className='text-primary' href={'/register'}>
+							Реєстрація
 						</Link>
 					</p>
 				) : (
 					<p>
 						Ви вже маєте аккаунт?{' '}
-						<Link className='text-' href={'/login'}>
+						<Link className='text-primary' href={'/login'}>
 							Увійдіть
 						</Link>
 					</p>

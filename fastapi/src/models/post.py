@@ -11,7 +11,8 @@ class Post(Base):
     description = Column(String(255))
     creation_date = Column(BigInteger)
     lost_date = Column(BigInteger)
-    location = Column(String(255))
+    location_name = Column(String(255))
+    location_coords = Column(String(255))
     user_id = Column(BigInteger, ForeignKey('users.id'))
 
     user = relationship("User", back_populates="posts")

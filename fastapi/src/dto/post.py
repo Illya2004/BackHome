@@ -2,25 +2,27 @@ from typing import List, Optional, Dict
 from pydantic import BaseModel
 
 
-
 class PostModel(BaseModel):
-    postId: int
+    id: int
+    title: str
     description: str
-    location: str
+    location_name: str
+    location_coords: str
+    creationDate: str
+    lostDate: str
     userId: int
     likeCount: Optional[int] = None
 
 
 class PostModelNoLike(BaseModel):
-    postId: int
+    id: int
+    title: str
     description: str
-    location: str
-    user: Dict[str, str]
-
-
-class PostUpdate(BaseModel):
-    description: Optional[str] = None
-    location: Optional[str] = None
+    location_name: str
+    location_coords: str
+    creationDate: str
+    lostDate: str
+    userId: int
 
 
 class UserPosts(BaseModel):

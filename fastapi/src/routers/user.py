@@ -28,18 +28,18 @@ async def update_user_profile(
         raise HTTPException(status_code=400, detail="No data provided")
     user = db.query(User).filter(User.id == current_user.id).first()
     if user:
-        if profile_data.username:
-            user.username = profile_data.username
-        if profile_data.phone_number:
-            user.phone_number = profile_data.phone_number
-        if profile_data.password and profile_data.new_password:
+        if profile_data.name:
+            user.name = profile_data.name
+        if profile_data.phoneNumber:
+            user.phone_number = profile_data.phoneNumber
+        if profile_data.password and profile_data.newPassword:
             if pwd_context.verify(profile_data.password, user.password):
-                user.password = pwd_context.hash(profile_data.new_password)
+                user.password = pwd_context.hash(profile_data.newPassword)
             else:
                 raise HTTPException(status_code=400, detail="Invalid old password")
-        elif profile_data.password and not profile_data.new_password:
+        elif profile_data.password and not profile_data.newPassword:
             raise HTTPException(status_code=400, detail="Type new password!")
-        elif not profile_data.password and profile_data.new_password:
+        elif not profile_data.password and profile_data.newPassword:
             raise HTTPException(status_code=400, detail="Type old password!")
         db.commit()
         db.refresh(user)

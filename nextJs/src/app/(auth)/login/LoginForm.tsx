@@ -11,19 +11,18 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
+import Heading from '@/components/ui/heading'
 import { Input } from '@/components/ui/input'
 import AuthService from '@/services/auth.service'
 import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 const formSchema = z.object({
 	email: z.string().email({ message: 'Email invalid format.' }),
-	password: z
-		.string()
-		.min(8, { message: 'Password must be at least 8 characters.' }),
+	password: z.string(),
 })
 
 export function LoginForm() {
@@ -31,25 +30,30 @@ export function LoginForm() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 	})
-
+	const { replace } = useRouter()
 	const { mutate } = useMutation({
 		mutationKey: ['login'],
 		mutationFn: (data: z.infer<typeof formSchema>) =>
 			AuthService.auth('login', data),
-		onSuccess: () => {},
+		onSuccess: () => {
+			replace('/')
+		},
 	})
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		mutate(values)
 	}
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
+				<div>
+					<Heading>Вже маєте акаунт?</Heading>
+					<Heading>Увійдіть!</Heading>
+				</div>
 				<FormField
 					control={form.control}
 					name='email'
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Username</FormLabel>
 							<FormControl>
 								<Input placeholder='name@example.com' type='email' {...field} />
 							</FormControl>
@@ -62,7 +66,6 @@ export function LoginForm() {
 					name='password'
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password</FormLabel>
 							<FormControl>
 								<div className='flex gap-2'>
 									<Input
