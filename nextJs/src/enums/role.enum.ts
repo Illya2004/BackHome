@@ -1,0 +1,4 @@
+export enum EnumRole {
+	VOLUNTEER = 'ROLE_VOLUNTEER',
+	CREATOR = 'ROLE_CREATOR',
+}
