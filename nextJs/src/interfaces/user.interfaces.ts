@@ -1,9 +1,11 @@
+import { EnumRole } from '@/enums/role.enum'
+
 export interface IUser {
 	id: number
 	email: string
-	username: string
-	phone_number: string
-	//role: EnumRole
+	name: string
+	phoneNumber: string
+	role: EnumRole
 }
 
 export interface IInitialState {
@@ -15,8 +17,8 @@ export interface IInitialState {
 	isSuccessRegister: boolean | null
 }
 export interface IEditProfileForm {
-	username: string
+	name: string
 	password: string
-	new_password: string
-	phone_number: string
+	newPassword: string
+	phoneNumber: string
 }

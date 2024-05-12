@@ -4,7 +4,7 @@ export interface IPost {
 	id: number
 	title: string
 	description: string
-	locationName: string
+	locationCoords: string
 	creationDate: string
 	lostDate: string
 	image: string

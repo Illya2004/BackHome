@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./fastapi
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./fastapi:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: uvicorn main:app --host 0.0.0.0 --port 80
+
+  springboot:
+    build:
+      context: ./springboot
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./springboot:/app/target
+
+  nextjs:
+    build:
+      context: ./nextjs
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Порт Next.js за замовчуванням
+    volumes:
+      - ./nextjs:/app

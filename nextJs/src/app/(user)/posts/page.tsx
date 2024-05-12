@@ -1,17 +1,23 @@
-import { EnumFilterDate } from '@/interfaces/filter.interfaces'
-import { getPosts } from '../page'
+import Heading from '@/components/ui/heading'
 import PostsExplorer from './posts-explorer'
+import Sort from './sort'
 
-async function Posts() {
-	const postsResponse = await getPosts({
-		limit: 5,
-		page: 1,
-		date: EnumFilterDate.asc,
-	})
+function Posts(params: any) {
+	// const postsResponse = await getPosts({
+	// 	limit: 4,
+	// 	page: 1,
+	// 	//date: EnumFilterDate.asc,
+	// })
 
 	return (
 		<div>
-			<PostsExplorer initialPosts={postsResponse} />
+			<div className='flex justify-between px-20'>
+				<Heading>Всі запити</Heading>
+				<Sort />
+			</div>
+			<div className='px-20'>
+				<PostsExplorer />
+			</div>
 		</div>
 	)
 }

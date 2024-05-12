@@ -2,6 +2,7 @@ export interface IFilterData {
 	limit?: number
 	page?: number
 	date?: EnumFilterDate
+	sort?: string
 }
 export interface IFiltersActionPayload {
 	key: keyof IFilterData

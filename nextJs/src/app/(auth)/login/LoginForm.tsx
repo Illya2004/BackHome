@@ -22,15 +22,18 @@ import { useState } from 'react'
 
 const formSchema = z.object({
 	email: z.string().email({ message: 'Email invalid format.' }),
-	password: z.string(),
+	password: z
+		.string()
+		.min(8, { message: 'Password must be at least 8 characters.' }),
 })
 
 export function LoginForm() {
 	const [isShowPass, setIsShowPass] = useState(false)
+	const { replace } = useRouter()
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 	})
-	const { replace } = useRouter()
+
 	const { mutate } = useMutation({
 		mutationKey: ['login'],
 		mutationFn: (data: z.infer<typeof formSchema>) =>

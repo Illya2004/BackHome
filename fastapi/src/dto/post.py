@@ -6,11 +6,11 @@ class PostModel(BaseModel):
     id: int
     title: str
     description: str
-    location_name: str
-    location_coords: str
+    locationCoords: str
     creationDate: str
     lostDate: str
-    userId: int
+    image: str
+    user: Dict[str, str]
     likeCount: Optional[int] = None
 
 
@@ -18,11 +18,11 @@ class PostModelNoLike(BaseModel):
     id: int
     title: str
     description: str
-    location_name: str
-    location_coords: str
+    locationCoords: str
     creationDate: str
     lostDate: str
-    userId: int
+    image: str
+    user: Dict[str, str]
 
 
 class UserPosts(BaseModel):

@@ -27,10 +27,8 @@ export const useFilters = () => {
 	const updateQueryParams = (key: keyof IFilterData, value: string) => {
 		const newParams = new URLSearchParams(searchParams.toString())
 		if (value) {
+			if (key !== 'page') newParams.set('page', '1')
 			newParams.set(key, String(value))
-			if (key === 'location' || key === 'categories') {
-				newParams.set('page', '1')
-			}
 		} else {
 			newParams.delete(key)
 		}

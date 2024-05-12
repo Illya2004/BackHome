@@ -26,7 +26,7 @@ const Arrow: React.FC<IProps> = ({
 		<Button
 			variant={disabled ? 'default' : 'outline'}
 			onClick={() => clickFunction(direction)}
-			className='rounded-full p-2'
+			className='rounded-full p-2 bg'
 			disabled={disabled}
 		>
 			{icon}

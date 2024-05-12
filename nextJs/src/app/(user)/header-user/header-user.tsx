@@ -27,7 +27,7 @@ const HeaderUser: FC = () => {
 			<div>
 				{profile ? (
 					<button onClick={() => setIsShow(!isShow)}>
-						<User />
+						<User size={40} />
 					</button>
 				) : (
 					<div className='space-x-5'>

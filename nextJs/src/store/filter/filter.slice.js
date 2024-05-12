@@ -3,10 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
 	isFilterUpdated: false,
 	queryParams: {
-		categories: '',
-		location: '',
+		date: '',
 		page: 1,
-		limit: 5,
+		limit: 16,
 	},
 }
 
@@ -24,10 +23,9 @@ export const filtersSlice = createSlice({
 		},
 		resetQueryParams: state => {
 			state.queryParams = {
-				categories: '',
-				location: '',
 				page: 1,
-				limit: 5,
+				sort: '',
+				limit: 16,
 			}
 		},
 	},

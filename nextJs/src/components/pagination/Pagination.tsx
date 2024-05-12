@@ -31,8 +31,8 @@ const Pagination: FC<IPaginationProps> = ({
 				const pageNumber = (index + 1).toString()
 				return (
 					<button
-						className={cn('w-2 h-2 bg-tertiary rounded-full', {
-							'bg-accent': currentPage === pageNumber,
+						className={cn('w-2 h-2 bg-tertiary rounded-full bg-secondary', {
+							'bg-primary': currentPage === pageNumber,
 						})}
 						key={index}
 						onClick={() => updatePage(pageNumber)}
